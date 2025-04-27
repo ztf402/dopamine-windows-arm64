@@ -1,0 +1,35 @@
+name: Build Dopamine for ARM64
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Restore NuGet packages
+      run: nuget restore Dopamine.sln
+
+    - name: Build solution for ARM64
+      run: msbuild Dopamine.sln /p:Configuration=Release /p:Platform=ARM64
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dopamine-arm64-build
+        path: |
+          **/bin/Release/
