@@ -28,9 +28,11 @@ jobs:
     - name: Build solution for ARM64
       run: msbuild Dopamine.sln /p:Configuration=Release /p:Platform=ARM64
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+    - name: Archive build artifacts
+      run: tar -czf build-artifacts.tar.gz **/bin/Release/
+
+    - name: Upload artifacts manually
+      uses: actions/upload-artifact@v3 # 或 v2
       with:
-        name: dopamine-arm64-build
-        path: |
-          **/bin/Release/
+        name: build-artifacts
+        path: build-artifacts.tar.gz
