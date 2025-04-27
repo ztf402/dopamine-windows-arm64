@@ -28,9 +28,6 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore Dopamine.sln
 
-    - name: Add Windows SDK Contracts package
-      run: dotnet add Dopamine/Dopamine.csproj package Microsoft.Windows.SDK.Contracts
-
     - name: Build solution for ARM64
       run: msbuild Dopamine.sln /p:Configuration=Release /p:Platform=ARM64
 
