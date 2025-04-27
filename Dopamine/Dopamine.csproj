@@ -1520,5 +1520,14 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <OutputPath>bin\Release\ARM64\</OutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <OutputPath>bin\Debug\ARM64\</OutputPath>
+  </PropertyGroup>
   -->
 </Project>
